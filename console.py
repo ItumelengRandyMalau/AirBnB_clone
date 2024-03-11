@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_inst.id)
 
     def do_show(self, arg):
-        """ Prints the string representation of an instance based 
+        """ Prints the string representation of an instance based
             on class name and id.
         """
         command_args = shlex.split(arg)
@@ -63,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         pass
-    
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
