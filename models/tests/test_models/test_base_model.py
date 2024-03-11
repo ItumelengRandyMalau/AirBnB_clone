@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import patch
 from datetime import datetime
-from model.__init__ import storage
-from base_model import BaseModel
+import models
+from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
 
