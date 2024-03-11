@@ -5,6 +5,7 @@ import shlex
 from models.base_model import BaseModel
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """ Command interpreter for HBNB project."""
     prompt = "(hbnb) "
@@ -26,6 +27,7 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """ Executes nothing."""
         pass
+
     def do_create(self, arg):
         """ Creates a new instance of BaseModel,
             saves it (to the JSON file) and prints the id.
@@ -33,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
         command_args = shlex.split(arg)
         if len(command_args) == 0:
             print("**class name missing**")
-        elif command_args[0] not in self.valid_instances:
+        elif command_args[0] not in HBNBCommand.valid_instances:
             print("** class doesn't exist **")
         else:
             new_inst = BaseModel()
@@ -41,12 +43,13 @@ class HBNBCommand(cmd.Cmd):
             print(new_inst.id)
 
     def do_show(self, arg):
-        """ Prints the string representation of an instance based             class name and id.
+        """ Prints the string representation of an instance based 
+            on class name and id.
         """
         command_args = shlex.split(arg)
         if len(command_args) == 0:
             print("** class name missing **")
-        elif command_args[0] not in valid_instances:
+        elif command_args[0] not in HBNBCommand.valid_instances:
             print("** class doesn't exist **")
         elif len(command_args) < 2:
             print("** instance id missing **")
@@ -58,7 +61,9 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
-    def do_destroy(self, arg)
+    def do_destroy(self, arg):
+        pass
+    
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
