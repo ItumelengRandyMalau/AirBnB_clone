@@ -7,6 +7,7 @@ from models.engine.file_storage import FileStorage
 
 
 class TestFileStorage(unittest.TestCase):
+    """Unittests for testing instantiation of the FileStorage class"""
     def setUp(self):
         self.storage = FileStorage()
         self.model = BaseModel()
