@@ -37,12 +37,12 @@ class TestBaseModel(unittest.TestCase):
             base_model_dict['created_at'], base_model.created_at.isoformat())
         self.assertEqual(
             base_model_dict['updated_at'], base_model.updated_at.isoformat())
-    
+
     def test_to_dict_with_arg(self):
         bm_obj = BaseModel()
         with self.assertRaises(TypeError):
             bm_obj.to_dict(None)
-    
+
     def test_save_with_arg(self):
         bm_obj = BaseModel()
         with self.assertRaises(TypeError):
@@ -50,8 +50,10 @@ class TestBaseModel(unittest.TestCase):
 
     def test_str(self):
         base_model = BaseModel()
-        self.assertEqual(str(base_model), f"[BaseModel] 
-                         ({base_model.id}) {base_model.__dict__}")
+        self.assertEqual(
+            str(base_model),
+            f"[BaseModel] ({base_model.id}) {base_model.__dict__}"
+            )
 
 
 if __name__ == '__main__':
