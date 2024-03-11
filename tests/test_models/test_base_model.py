@@ -1,10 +1,15 @@
+#!/usr/bin/python3
+"""Defines unittests for models/base_models.py"""
+
 import unittest
 from unittest.mock import patch
 from datetime import datetime
 import models
 from models.base_model import BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
+    """Unittests for all methods"""
 
     @patch('models.storage.new')
     def test_init(self, mock_new):
@@ -32,11 +37,22 @@ class TestBaseModel(unittest.TestCase):
             base_model_dict['created_at'], base_model.created_at.isoformat())
         self.assertEqual(
             base_model_dict['updated_at'], base_model.updated_at.isoformat())
+    
+    def test_to_dict_with_arg(self):
+        bm_obj = BaseModel()
+        with self.assertRaises(TypeError):
+            bm_obj.to_dict(None)
+    
+    def test_save_with_arg(self):
+        bm_obj = BaseModel()
+        with self.assertRaises(TypeError):
+            bm_obj.save(None)
 
     def test_str(self):
         base_model = BaseModel()
-        self.assertEqual(
-            str(base_model), f"[BaseModel] ({base_model.id}) {base_model.__dict__}")
+        self.assertEqual(str(base_model), f"[BaseModel] 
+                         ({base_model.id}) {base_model.__dict__}")
+
 
 if __name__ == '__main__':
     unittest.main()
