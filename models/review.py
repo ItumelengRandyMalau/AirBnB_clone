@@ -1,7 +1,8 @@
 #!/usr/bin/pythone
-"""Defines the Place class that inherits from BaseModel"""
+"""Defines the Review class that inherits from BaseModel"""
 
 from models.base_model import BaseModel
+
 
 class Review(BaseModel):
     """Represents user reviews"""
