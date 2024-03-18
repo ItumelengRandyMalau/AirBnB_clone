@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         """
         command_args = shlex.split(arg)
         if len(command_args) == 0:
-            print("**class name missing**")
+            print("** class name missing **")
         elif command_args[0] not in HBNBCommand.valid_instances:
             print("** class doesn't exist **")
         else:
