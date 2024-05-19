@@ -78,10 +78,10 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
-    
+
     def do_all(self, arg):
-        """ Prints all sting representation fo all instances based 
-            or not in the class name.
+        """ Prints all sting representation fo all instances
+            based or not in the class name.
         """
         command_args = shlex.split(arg)
         obj = storage.all()
@@ -97,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj_list)
         else:
             print("** class doesn't exist **")
-    
+
     def do_update(self, arg):
         """ Updates an instance based on the class name and id by adding or
             updating attribute.
@@ -121,6 +121,7 @@ class HBNBCommand(cmd.Cmd):
                 obj[key].save()
             else:
                 print("** no instance found **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
