@@ -45,6 +45,16 @@ class FileStorage:
                     class_name, obj_id = key.split('.')
                     if class_name == 'User':
                         obj = User(**value)
+                    elif class_name == 'State':
+                        obj = State(**value)
+                    elif class_name == 'City':
+                        obj = City(**value)
+                    elif class_name == 'Place':
+                        obj = Place(**value)
+                    elif class_name == 'Amenity':
+                        obj = Amenity(**value)
+                    elif class_name == 'Review':
+                        obj = Review(**value)
                     else:
                         obj = eval(class_name)(**value)
                     self.new(obj)

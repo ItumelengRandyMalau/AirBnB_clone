@@ -5,34 +5,38 @@ import shlex
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """ Command interpreter for HBNB project."""
+    """Command interpreter for HBNB project."""
     prompt = "(hbnb) "
-    valid_instances = ["BaseModel", "User"]
+    valid_instances = ["BaseModel", "User", "State", "City", "Place", "Amenity", "Review"]
 
     def do_quit(self, arg):
-        """ Quit command to exit the program."""
+        """Quit command to exit the program."""
         return True
 
     def help_quit(self):
-        """ Displays help message for quit command."""
+        """Displays help message for quit command."""
         print("Quit command to exit the program")
 
     def do_EOF(self, arg):
-        """ EOF command to exit the program."""
+        """EOF command to exit the program."""
         print()
         return True
 
     def emptyline(self):
-        """ Executes nothing."""
+        """Executes nothing."""
         pass
 
     def do_create(self, arg):
-        """ Creates a new instance of BaseModel or User,
-            saves it (to the JSON file) and prints the id.
-        """
+        """Creates a new instance of BaseModel or User,
+        saves it (to the JSON file) and prints the id."""
         command_args = shlex.split(arg)
         if len(command_args) == 0:
             print("** class name missing **")
@@ -44,9 +48,8 @@ class HBNBCommand(cmd.Cmd):
             print(new_inst.id)
 
     def do_show(self, arg):
-        """ Prints the string representation of an instance based
-            on class name and id.
-        """
+        """Prints the string representation of an instance
+        based on class name and id."""
         command_args = shlex.split(arg)
         if len(command_args) == 0:
             print("** class name missing **")
@@ -63,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, arg):
-        """ Deletes an instance based on the class name and id."""
+        """Deletes an instance based on the class name and id."""
         command_args = shlex.split(arg)
         if len(command_args) == 0:
             print("** class name missing **")
@@ -72,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(command_args) < 2:
             print("** instance id missing **")
         else:
-            obj = storage.all()
+            obj = storage.all
             key = "{}.{}".format(command_args[0], command_args[1])
             if key in obj:
                 del obj[key]
@@ -81,9 +84,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
-        """ Prints all string representation of all instances
-            based or not on the class name.
-        """
+        """Prints all string representation of all instances
+        based or not on the class name."""
         command_args = shlex.split(arg)
         obj = storage.all()
         obj_list = []
@@ -100,9 +102,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, arg):
-        """ Updates an instance based on the class name and id by adding or
-            updating attribute.
-        """
+        """Updates an instance based on the class name and id
+        by adding or updating attribute."""
         command_args = shlex.split(arg)
         if len(command_args) == 0:
             print("** class name missing **")
@@ -121,6 +122,7 @@ class HBNBCommand(cmd.Cmd):
                 attr_name = command_args[2]
                 attr_value = command_args[3]
 
+                # Convert the attribute value to the appropriate type
                 if hasattr(obj[key], attr_name):
                     current_type = type(getattr(obj[key], attr_name))
                     if current_type == int:
@@ -140,3 +142,4 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+
