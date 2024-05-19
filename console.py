@@ -98,7 +98,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-    def do_update(self, arg):
+   def do_update(self, arg):
         """ Updates an instance based on the class name and id by adding or
             updating attribute.
         """
@@ -117,7 +117,21 @@ class HBNBCommand(cmd.Cmd):
             obj = storage.all()
             key = "{}.{}".format(command_args[0], command_args[1])
             if key in obj:
-                setattr(obj[key], command_args[2], eval(command_args[3]))
+                attr_name = command_args[2]
+                attr_value = command_args[3]
+
+                if hasattr(obj[key], attr_name):
+                    current_type = type(getattr(obj[key], attr_name))
+                    if current_type == int:
+                        attr_value = int(attr_value)
+                    elif current_type == float:
+                        attr_value = float(attr_value)
+                    else:
+                        attr_value = str(attr_value)
+                else:
+                    attr_value = str(attr_value)
+
+                setattr(obj[key], attr_name, attr_value)
                 obj[key].save()
             else:
                 print("** no instance found **")
